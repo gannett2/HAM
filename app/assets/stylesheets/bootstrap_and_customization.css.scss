@@ -1,0 +1,24 @@
+@import url(http://fonts.googleapis.com/css?family=Kaushan+Script|Poiret+One);
+
+
+$jumbotron-bg: #bdc3c7;
+$navbar-default-link-color: white;
+$navbar-default-bg: black;
+$navbar-default-link-hover-bg: #191919;
+$navbar-default-link-hover-color: white;
+$body-bg: #2c3e50;
+@import 'bootstrap-sprockets';
+@import 'bootstrap';
+
+.center {
+	text-align: center;
+}
+
+.navbar-brand{
+	font-family: 'Kaushan Script';
+	font-weight: bold;
+}
+
+.jumbotron{
+	font-family: 'Kaushan Script';
+}

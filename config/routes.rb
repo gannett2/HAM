@@ -1,4 +1,13 @@
 Rails.application.routes.draw do
+  root 'pages#home'
+  get "about" => "pages#about"
+  get "camps" => "pages#camps"
+  get "team" => "pages#team"
+  get "pictures" => "pages#pictures"
+  get "registration" => "pages#registration"
+
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
