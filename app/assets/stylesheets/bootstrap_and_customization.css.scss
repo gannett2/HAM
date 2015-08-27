@@ -19,6 +19,21 @@ $body-bg: #2c3e50;
 	font-weight: bold;
 }
 
+
+.carousel-inner > .item > img {
+	margin: 0 auto;
+}
+
+.carousel{
+  max-height: 480px;
+  overflow: hidden;
+}
+
+
 .jumbotron{
-	font-family: 'Kaushan Script';
+	font-family: "Kaushan Script";
+}
+
+.left{
+	text-align: left;
 }
