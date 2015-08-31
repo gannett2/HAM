@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @camp.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @camp.description %>
+</p>
+<%if @camp.user == current_user%>
+	<%= link_to 'Edit', edit_camp_path(@camp) %> |
+<%end %> 
+<%= link_to 'Back', camps_path %>

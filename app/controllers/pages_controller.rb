@@ -5,15 +5,10 @@ class PagesController < ApplicationController
   def about 
   end
 
-  def camps
-  end
-
   def team
   end
 
   def pictures
   end
 
-  def registration
-  end
 end

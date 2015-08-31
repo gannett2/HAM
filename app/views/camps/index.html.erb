@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Camps</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Camp Name</th>
+      <th>Description</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @camps.each do |camp| %>
+      <tr>
+        <td><%= camp.name %></td>
+        <td><%= camp.description %></td>
+        <td><%= camp.user.email if camp.user %></td>
+        <td><%= link_to 'Show', camp %></td>
+        <%if camp.user == current_user%>
+          <td><%= link_to 'Edit', edit_camp_path(camp) %></td>
+          <td><%= link_to 'Destroy', camp, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <%end%>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<% if user_signed_in? %>
+<%= link_to 'New Camp', new_camp_path %>
+<%end%>
