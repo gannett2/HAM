@@ -1,0 +1,39 @@
+<footer class="site-footer">
+	<div class="container">
+		<div class ="row">
+			<div class= "col-md-4 logo">
+					<%= image_tag("logo.png", :size => "130x130",:alt =>"LOGO")%>
+			</div>	
+			<div class= "col-md-4">
+				<h4>Contact Address</h4>
+					<address>
+						Hope Alvinston Ministries<br>
+						P.O. Box #63,<br>
+						Alvinston, Ontario,<br>
+						N0N 1A0
+					</address>
+			</div>	
+			<div class= "col-md-4">
+				<h4>Our Sponsors</h4>
+					<address>
+						
+						Alvinston & Watford Optimist Clubs<br>
+						<a href="http://wcfoundation.ca/"  target="_blank">Westminister College Foundation</a><br>
+						<a href="http://thehaytergroup.com/"  target="_blank">Hayter Plumbing & Heating</a><br>
+						<a href="http://www.alvinstonfiredept.com/"  target="_blank">Alvinston Fire Fighters</a><br>
+					</address>
+			</div>						
+		</div>
+		<div class="bottom-footer">
+		
+			<ul class="footer-nav">
+        <li><%= link_to "Home", root_path %></li>
+        <li><%= link_to "Our Mission", about_path %></li>
+        <li><%= link_to "Camps", camps_path %></li>
+        <li><%= link_to "Team", team_path %></li>
+        <li><%= link_to "Pictures", pictures_path %></li>
+      </ul>
+			
+		</div>
+	</div>
+</footer>
