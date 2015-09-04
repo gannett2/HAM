@@ -1,33 +1,38 @@
-<h1>Camps</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Camp Name</th>
-      <th>Description</th>
-      <th>User</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<div class="panel panel-default center">
+  <h1>Welcome to the Camps Page!</h1>
+  <p>Below is a comprehensive list of the camps offered for the summer of <%= Time.now.year %></p>
+  <p>Note: We update our camp listing in January, come back next year to see our camps for the summer of 2016</p>
+</div>
 
-  <tbody>
-    <% @camps.each do |camp| %>
-      <tr>
-        <td><%= camp.name %></td>
-        <td><%= camp.description %></td>
-        <td><%= camp.user.email if camp.user %></td>
-        <td><%= link_to 'Show', camp %></td>
-        <%if camp.user == current_user%>
-          <td><%= link_to 'Edit', edit_camp_path(camp) %></td>
-          <td><%= link_to 'Destroy', camp, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+<% @camps.order(start_date: :asc).each do |camp| %>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <div class="panel-title"><h1><%= camp.name %></h1></div>
+    </div>
+    <div class="panel-body">
+      <h4><%= camp.start_date.strftime("%b. %e to")%> to <%= camp.end_date.strftime(" %b. %e")%></h4>
+      <p>
+        <%= camp.description %></br></br>
+        <strong>Grades:</strong> <%= camp.grade_low %> to <%= camp.grade_high%></br>
+        <strong>Times:</strong> <%= camp.start_time.strftime("%l:%M %p") %> to <%= camp.end_time.strftime("%l:%M %p")%></br>
+        <strong>Cost:</strong> <%= number_to_currency(camp.cost) %></br>
+        <strong>Director:</strong> <%= camp.director %></br>
+        <strong>Location:</strong> <%= camp.location %></br>
+      </p>
+    </div>
+    <div class="panel-footer">
+          <%= link_to 'Show', camp %>
+        <%if camp.user == current_user or current_user.try(:admin?)%>
+          <%= link_to 'Edit', edit_camp_path(camp) %>
+          <%= link_to 'Destroy', camp, method: :delete, data: { confirm: 'Are you sure?' } %>
         <%end%>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
+    </div>
+  </div>
+<% end %>
 
 <% if user_signed_in? %>
-<%= link_to 'New Camp', new_camp_path %>
+  <%= link_to 'New Camp', new_camp_path, class: "btn btn-primary" %>
 <%end%>
+
+

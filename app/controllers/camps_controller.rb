@@ -3,6 +3,7 @@ class CampsController < ApplicationController
   before_action :correct_user, only: [:edit,:update,:destroy]
   before_action :authenticate_user!, except: [:index,:show]
 
+
   def index
     @camps = Camp.all
   end
@@ -37,7 +38,7 @@ class CampsController < ApplicationController
 
  def destroy
     @camp.destroy
-      redirect_to camps_url, notice: 'Camp was successfully destroyed.' 
+    redirect_to camps_url, notice: 'Camp was successfully destroyed.' 
  end
 
 
@@ -49,10 +50,14 @@ class CampsController < ApplicationController
 
     def correct_user
       @camp = current_user.camps.find_by(id: params[:id])
-      redirect_to camps_path, notice: "Not authorized to edit" if @camp.nil?
+      if current_user.try(:admin?)
+        #do nothing, allows admin to edit/destroy all picturees
+      else
+        redirect_to camps_path, notice: "Not authorized to edit" if @camp.nil?
+      end
     end
     # Never trust parameters from the scary internet, only allow the white list through.
     def camp_params
-      params.require(:camp).permit(:name, :description)
+      params.require(:camp).permit(:name, :description, :start_date, :end_date, :is_day_camp, :grade_low, :grade_high, :cost, :director, :location, :start_time, :end_time)
     end
 end

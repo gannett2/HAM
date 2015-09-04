@@ -1,7 +1,6 @@
 @import url(http://fonts.googleapis.com/css?family=Kaushan+Script|Poiret+One);
 
 
-$jumbotron-bg: #bdc3c7;
 $navbar-default-link-color: white;
 $navbar-default-bg: black;
 $navbar-default-link-hover-bg: #191919;
@@ -41,6 +40,7 @@ $body-bg: #2c3e50;
 	margin-top: 30px;
 	padding-top: 30px;
 }
+
 .bottom-footer{
 	border-top: 1px solid #b2b2b2;
 	margin-top:10px;
@@ -74,3 +74,17 @@ $body-bg: #2c3e50;
 .page-body{
 	color: white;
 }
+
+.panel-footer .jumbotron .panel-header{
+	background-color: #bdc3c7;
+}
+
+.panel-body{
+	background-color: #F0F8FF;
+}
+
+.panel-footer p{
+	font-size: 120%;
+}
+
+

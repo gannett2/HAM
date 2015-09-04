@@ -1,19 +1,21 @@
 <% if user_signed_in? %>
-  <%= link_to 'New Picture', new_picture_path %>
+  <%= link_to 'New Picture', new_picture_path, class: "btn btn-primary" %>
 <%end%>
 
 <div id="pictures" class="transitions-enabled">
   <% @pictures.each do |picture| %>
     <div class="box panel panel-default">
-      <%= image_tag picture.image.url(:medium) =%>
       <div class="panel-body">
-        <%= picture.description %>
-        <%= picture.user.email if picture.user %>
-        <%= link_to 'Show', picture %>
-        <% if picture.user == current_user %>
+        <%= image_tag picture.image.url(:medium) =%>
+      </div>
+      <div class="panel-footer">
+        <%= picture.description %></br>
+        <% if picture.user == current_user or current_user.try(:admin?)%>
+          <%= picture.user.email if picture.user %></br>
           <%= link_to 'Edit', edit_picture_path(picture) %>
-          <%= link_to 'Destroy', picture, method: :delete, data: { confirm: 'Are you sure?' } %>
+          <%= link_to 'Destroy', picture, method: :delete, data: { confirm: 'Are you sure?' } %></br>
         <%end%>
+        <%= link_to 'Show', picture %>
       </div>
     </div>
   <% end %>

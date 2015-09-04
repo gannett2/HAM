@@ -1,13 +1,27 @@
-<p>
-  <strong>Name:</strong>
-  <%= @camp.name %>
-</p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @camp.description %>
-</p>
-<%if @camp.user == current_user%>
-	<%= link_to 'Edit', edit_camp_path(@camp) %> |
-<%end %> 
-<%= link_to 'Back', camps_path %>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <div class="panel-title"><h1><%= @camp.name %></h1></div>
+  </div>
+  <div class="panel-body">
+    <%= @camp.description %>
+    <%= @camp.director %>
+    <%= @camp.user.email if @camp.user %>
+    <p>
+      <%= @camp.start_date%> to <%= @camp.end_date%></br>
+      <%= @camp.grade_low %> to <%= @camp.grade_high%></br>
+      <%= @camp.start_time %> to <%= @camp.end_time%></br>
+      <%= @camp.cost %>
+      <%= @camp.director %>
+      <%= @camp.location %>
+    </p>
+  </div>
+  <div class="panel-footer">
+  	<div class="center">
+	    <%if @camp.user == current_user%>
+				<%= link_to 'Edit', edit_camp_path(@camp) %> |
+			<%end %> 
+			<%= link_to 'Back', camps_path %>
+		</div>
+  </div>
+</div>

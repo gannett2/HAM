@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150831203757) do
+ActiveRecord::Schema.define(version: 20150901215511) do
 
   create_table "camps", force: :cascade do |t|
     t.string   "name"
@@ -19,8 +19,19 @@ ActiveRecord::Schema.define(version: 20150831203757) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.integer  "user_id"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.boolean  "is_day_camp"
+    t.integer  "grade_low"
+    t.integer  "grade_high"
+    t.decimal  "cost"
+    t.string   "director"
+    t.string   "location"
+    t.time     "start_time"
+    t.time     "end_time"
   end
 
+  add_index "camps", ["cost"], name: "index_camps_on_cost"
   add_index "camps", ["user_id"], name: "index_camps_on_user_id"
 
   create_table "pictures", force: :cascade do |t|

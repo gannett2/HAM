@@ -46,7 +46,11 @@ class PicturesController < ApplicationController
 
      def correct_user
       @pin = current_user.pictures.find_by(id: params[:id])
-      redirect_to pictures_path, notice: "Not authorized to edit this pin" if @pin.nil?
+      if current_user.try(:admin?)
+        #do nothing, allows admin to edit/destroy all picturees
+      else
+        redirect_to pictures_path, notice: "Not authorized to edit this pin" if @pin.nil?
+      end
     end
 
     def picture_params

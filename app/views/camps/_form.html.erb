@@ -1,4 +1,4 @@
-<%= form_for(@camp) do |f| %>
+<%= form_for @camp do |f| %>
   <% if @camp.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@camp.errors.count, "error") %> prohibited this camp from being saved:</h2>
@@ -17,8 +17,57 @@
   </div>
   <div class="form-group">
     <%= f.label :description %><br>
-    <%= f.text_field :description, class:"form-control" %>
+    <%= f.text_area :description, class:"form-control", rows:"6" %>
   </div>
+  <div class="form-group">
+    <%= f.label :start_date %><br>
+    <%= f.date_field :start_date, class:"form-control"%>
+  </div>
+   <div class="form-group">
+    <%= f.label :end_date %><br>
+    <%= f.date_field :end_date, class:"form-control"%>
+  </div>
+   <div class="form-group">
+    <%= f.label :grade_low %><br>
+    <%= f.select :grade_low, ['1','2','3','4','5','6','7','8','9','10','11','12'],class:"form-control"%>
+  </div>
+  <div class="form-group">
+    <%= f.label :grade_high %><br>
+    <%= f.select :grade_high, ['1','2','3','4','5','6','7','8','9','10','11','12'],class:"form-control"%>
+  </div>
+  <div class="form-group">
+    <%= f.label :cost %><br>
+    <div class="input-group">
+      <span class="input-group-addon">$</span>
+      <%= f.text_field :cost,class:"form-control"%>
+      <span class="input-group-addon">.00</span>
+    </div>
+  </div>
+   <div class="form-group">
+    <%= f.label :director %><br>
+    <%= f.text_field :director,class:"form-control"%>
+  </div>
+  <div class="form-group">
+    <%= f.label :location %><br>
+    <%= f.text_field :location,class:"form-control"%>
+  </div>
+   <div class="form-group">
+      <%= f.label :is_day_camp, "Day Camp", :value => true %>
+      <%= f.radio_button :is_day_camp, true, class: "is_day is_day_true"%>
+      <%= f.label :is_day_camp, "Overnight Camp", :value => false %>
+      <%= f.radio_button :is_day_camp, false, class: "is_day is_day_false"%>
+  </div>
+  <div id="day_times">
+    <div class="form-group">
+      <%= f.label :start_time %><br>
+      <%= f.time_select :start_time,class:"form-control", :ampm =>true%>
+    </div>
+    <div class="form-group">
+      <%= f.label :end_time %><br>
+      <%= f.time_select :end_time,class:"form-control", :ampm =>true%>
+    </div>
+  </div>
+
   <div class="form-group">
     <%= f.submit class: "btn btn-primary"%>
   </div>
