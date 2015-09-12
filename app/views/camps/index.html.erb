@@ -11,18 +11,33 @@
       <div class="panel-title"><h1><%= camp.name %></h1></div>
     </div>
     <div class="panel-body">
-      <h4><%= camp.start_date.strftime("%b. %e to")%> to <%= camp.end_date.strftime(" %b. %e")%></h4>
+      <h4><%= camp.start_date.strftime("%A %b. %e")%> to <%= camp.end_date.strftime(" %A %b. %e")%></h4>
       <p>
         <%= camp.description %></br></br>
-        <strong>Grades:</strong> <%= camp.grade_low %> to <%= camp.grade_high%></br>
+        <strong>Grades:</strong> 
+        <% if camp.grade_low == -1 %>
+          JK
+        <% elsif camp.grade_low == 0 %>
+          SK
+        <% else %>
+          <%= camp.grade_low %>
+        <% end %>
+         to <%= camp.grade_high%></br>
         <strong>Times:</strong> <%= camp.start_time.strftime("%l:%M %p") %> to <%= camp.end_time.strftime("%l:%M %p")%></br>
-        <strong>Cost:</strong> <%= number_to_currency(camp.cost) %></br>
+
+        <strong>Cost:</strong> 
+        <% if camp.cost == 0 %>
+          Offering
+        <% else %>
+          <%= number_to_currency(camp.cost) %>
+        <% end %></br>
         <strong>Director:</strong> <%= camp.director %></br>
-        <strong>Location:</strong> <%= camp.location %></br>
+        <strong>Location:</strong> <%= camp.location %>, <%= camp.address %></br>
       </p>
+      
     </div>
     <div class="panel-footer">
-          <%= link_to 'Show', camp %>
+          <%= link_to 'SeeMap', camp %>
         <%if camp.user == current_user or current_user.try(:admin?)%>
           <%= link_to 'Edit', edit_camp_path(camp) %>
           <%= link_to 'Destroy', camp, method: :delete, data: { confirm: 'Are you sure?' } %>

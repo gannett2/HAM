@@ -22,7 +22,7 @@ class CampsController < ApplicationController
  def create
     @camp = current_user.camps.build(camp_params)
       if @camp.save
-        redirect_to @camp, notice: 'Camp was successfully created.' 
+        redirect_to camps_url, notice: 'Camp was successfully created.' 
       else
         render action: 'new' 
       end
@@ -30,7 +30,7 @@ class CampsController < ApplicationController
 
   def update
       if @camp.update(camp_params)
-         redirect_to @camp, notice: 'Camp was successfully updated.' 
+         redirect_to camps_url, notice: 'Camp was successfully updated.' 
       else
         render action: 'edit'
       end
@@ -58,6 +58,6 @@ class CampsController < ApplicationController
     end
     # Never trust parameters from the scary internet, only allow the white list through.
     def camp_params
-      params.require(:camp).permit(:name, :description, :start_date, :end_date, :is_day_camp, :grade_low, :grade_high, :cost, :director, :location, :start_time, :end_time)
+      params.require(:camp).permit(:name, :description, :start_date, :end_date, :is_day_camp, :grade_low, :grade_high, :cost, :director, :location, :address, :start_time, :end_time)
     end
 end

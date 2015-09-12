@@ -29,11 +29,11 @@
   </div>
    <div class="form-group">
     <%= f.label :grade_low %><br>
-    <%= f.select :grade_low, ['1','2','3','4','5','6','7','8','9','10','11','12'],class:"form-control"%>
+    <%= f.select :grade_low, [['JK', '-1'],['SK', '0'],'1','2','3','4','5','6','7','8','9','10','11','12'], prompt: "Please Select", class:"form-control"%>
   </div>
   <div class="form-group">
     <%= f.label :grade_high %><br>
-    <%= f.select :grade_high, ['1','2','3','4','5','6','7','8','9','10','11','12'],class:"form-control"%>
+    <%= f.select :grade_high, ['1','2','3','4','5','6','7','8','9','10','11','12'], prompt: "Please Select", class:"form-control"%>
   </div>
   <div class="form-group">
     <%= f.label :cost %><br>
@@ -51,6 +51,10 @@
     <%= f.label :location %><br>
     <%= f.text_field :location,class:"form-control"%>
   </div>
+  <div class="form-group">
+    <%= f.label :address %><br>
+    <%= f.text_field :address,class:"form-control"%>
+  </div>
    <div class="form-group">
       <%= f.label :is_day_camp, "Day Camp", :value => true %>
       <%= f.radio_button :is_day_camp, true, class: "is_day is_day_true"%>
@@ -60,11 +64,11 @@
   <div id="day_times">
     <div class="form-group">
       <%= f.label :start_time %><br>
-      <%= f.time_select :start_time,class:"form-control", :ampm =>true%>
+      <%= f.time_select :start_time,class:"form-control", minute_step: 15, :ampm =>true,:default => {:hour => '9', :minute => '0'} %>
     </div>
     <div class="form-group">
       <%= f.label :end_time %><br>
-      <%= f.time_select :end_time,class:"form-control", :ampm =>true%>
+      <%= f.time_select :end_time,class:"form-control", minute_step: 15, :ampm =>true, :default => {:hour => '16', :minute => '0'}%>
     </div>
   </div>
 
