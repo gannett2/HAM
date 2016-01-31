@@ -1,5 +1,28 @@
 == README
 
+This is a website that I developed in Ruby on Rails for a camp program called Hope Alvinston Ministries. It's currently up and running at:
+
+http://hopealvinston.herokuapp.com/
+
+I'm hoping to get a domain name for it soon but that's something I need to discuss with the organization that I developed it for.
+
+Ruby Version: 2.2.1
+
+This application uses:
+Devise to help handle users
+Paperclip to handle file uploads
+Bootstrap for some of the styling
+Turbolinks, Masonry-Rails, Geocoder
+
+Check out the gem file for so of those versions.
+There are some google maps on the "camps" page handled by gmaps-for-rails
+
+The live version runs on Heroku and Amazon Web Services currently handles the user uploaded picture storage.
+
+There are some google maps in place which I used gmaps-for-rails
+
+I'm still learning everything that a README document should have for a rails application so I'm going to leave in the suggested information for my future reference here at the bottom:
+
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
