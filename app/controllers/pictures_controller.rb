@@ -44,7 +44,7 @@ class PicturesController < ApplicationController
       @picture = Picture.find(params[:id])
     end
 
-     def correct_user
+    def correct_user
       @pin = current_user.pictures.find_by(id: params[:id])
       if current_user.try(:admin?)
         #do nothing, allows admin to edit/destroy all picturees

@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
+  resources :team_members
   resources :pictures
   resources :camps
   devise_for :users
   root 'pages#home'
   get "about" => "pages#about"
-  get "team" => "pages#team"
 
 
 

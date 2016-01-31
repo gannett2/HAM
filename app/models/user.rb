@@ -7,4 +7,5 @@ class User < ActiveRecord::Base
 
   has_many :camps
   has_many :pictures
+  has_many :team_members
 end
