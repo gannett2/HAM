@@ -1,3 +1,29 @@
 // Place all the styles related to the pages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+// Adjusts the header image on each page to fit inside the page container
+// "page-header" class is applied to all header images 
+
+/* For styling related to the carousel on the home page, see carousel_customization.css */
+
+
+.page-header > img{
+		width: 100%;
+    margin: 0px;
+    padding: 0px;
+}
+
+/* Makes these two items sit beside each other on the home page */
+#myCarousel, #welcomeMessage {
+	float: left; 
+	display: inline; 
+	width: 50%; 
+	position: relative;
+	margin: 0px; 
+	padding: 0px;
+}
+
+#welcomeMessage{
+	background-color: black;
+}

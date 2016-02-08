@@ -1,9 +1,18 @@
+<!-- Home Page -->
+<div onresize="welcome_message_height_adjust.js">
+	<div class="page-header">
+		<%= image_tag("headerHome.JPG", :alt =>"Missing Photo")%>
+	</div>
 
-<div class="page-header">
-	<%= image_tag("home_header.jpg", :alt =>"Missing Photo")%>
-</div>
+	<div>
+		<%=render 'layouts/carousel'%>
+	</div>
 
-<div>
-	<%=render 'layouts/carousel'%>
+	<div id="welcomeMessage" class="center">
+		<div class="content">
+			<h1>Welcome!</h1>
+			<p>Hope Alvinston Ministries is a small but quickly growing summer camp program based out of Hope United Church in Alvinston, Ontario. We're focused on providing fun summer activities to our local youth and improving our small community in any way we can. </p>
+		</div>
+	</div>
 </div>
 
