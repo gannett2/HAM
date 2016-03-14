@@ -30,7 +30,9 @@
 /* A class to add to any text element that I would like to be centered */
 .center {
 	text-align: center;
+	overflow: auto;
 }
+
 
 /* A class to add to any text element that I would like to be left aligned */
 .left{
