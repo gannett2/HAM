@@ -1,0 +1,39 @@
+@import url(http://fonts.googleapis.com/css?family=Kaushan+Script|Poiret+One);
+
+
+$navbar-default-link-color: white;
+$navbar-default-bg: black;
+$navbar-default-link-hover-bg: #191919;
+$navbar-default-link-hover-color: white;
+@import 'bootstrap-sprockets';
+@import 'bootstrap';
+
+/* Overrides the stored img dimensions and makes it fit into the logo element*/
+.logo > img{
+	
+}
+
+.navbar-brand{
+	font-family: 'Kaushan Script';
+	font-weight: bold;
+}
+
+.panel{
+	color: black;
+}
+
+.panel-footer .jumbotron .panel-header{
+	background-color: #bdc3c7;
+}
+
+.panel-body{
+	background-color: #F0F8FF;
+}
+
+.panel-footer p{
+	font-size: 120%;
+}
+
+
+
+

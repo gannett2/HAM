@@ -1,10 +1,11 @@
 <footer class="site-footer">
 	<div class="container">
-		<div class ="row">
-			<div class= "col-md-4 logo">
-					<%= image_tag("logo.png", :size => "130x130",:alt =>"LOGO")%>
+
+		<div class ="top-footer"> 
+			<div class= "footer-column logo">
+					<%= image_tag("logo.png", :size => "130x130",:alt =>"Hope Alvinston Ministries Logo")%>
 			</div>	
-			<div class= "col-md-4">
+			<div class= "footer-column">
 				<h4>Contact Address</h4>
 					<address>
 						Hope Alvinston Ministries<br>
@@ -13,19 +14,20 @@
 						N0N 1A0
 					</address>
 			</div>	
-			<div class= "col-md-4">
+			<div class= "footer-column">
 				<h4>Our Sponsors</h4>
-				<address>
-						<a href="http://alvinstonoptimist.com/"  target="_blank">Alvinston</a> &
-						<a href="http://watfordoptimist.com/"  target="_blank">Watford</a> Optimists Clubs</br>
-						<a href="http://wcfoundation.ca/"  target="_blank">Westminister College Foundation</a></br>
-						<a href="http://thehaytergroup.com/"  target="_blank">Hayter Plumbing & Heating</a></br>
-						<a href="http://www.alvinstonfiredept.com/"  target="_blank">Alvinston Fire Fighters</a></br>
-				</address>
+				<ul>
+						<li><a href="http://alvinstonoptimist.com/"  target="_blank">Alvinston</a> &
+						<a href="http://watfordoptimist.com/"  target="_blank">Watford</a> Optimists Clubs</li>
+						<li><a href="http://wcfoundation.ca/"  target="_blank">Westminister College Foundation</a></li>
+						<li><a href="http://thehaytergroup.com/"  target="_blank">Hayter Plumbing & Heating</a></li>
+						<li><a href="http://www.alvinstonfiredept.com/"  target="_blank">Alvinston Fire Fighters</a></li>
+				</ul>
 			</div>						
-		</div>
-		<div class="bottom-footer">
+		</div> 
 		
+		<div class="bottom-footer">
+		<!--Links to Other Pages that sit at the very bottom of the footer -->
 			<ul class="footer-nav">
         <li><%= link_to "Home", root_path %></li>
         <li><%= link_to "Our Mission", about_path %></li>
@@ -33,7 +35,7 @@
         <li><%= link_to "Team", team_path %></li>
         <li><%= link_to "Pictures", pictures_path %></li>
       </ul>
-			
 		</div>
+
 	</div>
 </footer>

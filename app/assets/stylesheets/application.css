@@ -24,8 +24,9 @@
     padding: 0px;
     overflow-x: hidden; 
     background-color: #2c3e50;
-    color: white;
+    color: white; /*Default Text Colour*/
 }
+
 /* A class to add to any text element that I would like to be centered */
 .center {
 	text-align: center;
@@ -34,4 +35,27 @@
 /* A class to add to any text element that I would like to be left aligned */
 .left{
 	text-align: left;
+}
+
+/* A class to add to any text element that I would like to be right aligned */
+.right{
+	text-align: right;
+}
+
+
+#wrapper {
+	min-height:100%; /*Makes sure the footer always sits at the very bottom of the page*/
+	position:relative;
+}
+#header{
+}
+#content {
+	padding-bottom:100px; /*Ensures that no element is overlapped by the footer*/
+}
+#footer {
+	width:100%;
+	height:100px;
+	position:absolute;
+	bottom:0;
+	left:0;
 }
