@@ -7,7 +7,7 @@
  * NB: Make sure the value for 'padding-bottom' on #content is equal to or greater than the height of #footer.
  */
 .footer-column{
-	width:33%;
+	width:25%;
 	float:left; /*Allow columns to appear inline when room is available*/
 	min-width: 225px;/*Columns will stack when column gets too thin to fit contents*/
 }
@@ -16,6 +16,7 @@
 	padding-left: 0;
 }
 .footer-column a{
+	color: #fff;
 }
 .site-footer{
 	background-color: black;

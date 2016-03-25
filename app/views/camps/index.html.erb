@@ -1,51 +1,60 @@
 
+<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.0/css/bootstrap-toggle.min.css" rel="stylesheet">
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.0/js/bootstrap-toggle.min.js"></script>
 <div class="panel panel-default center">
   <h1>Welcome to the Camps Page!</h1>
   <p>Below is a comprehensive list of the camps offered for the summer of <%= Time.now.year %></p>
-  <p>Note: We update our camp listing in January, come back next year to see our camps for the summer of 2016</p>
 </div>
+<div class="panel-group">
+  <% @camps.order(start_date: :asc).each_with_index do |camp, index| %>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <div class="panel-title">
+          <h1><%= camp.name %></h1>
+           <!-- Buttons, couldn't get to work yet
+          <button type="button" id="more<%=index%>" data-toggle="collapse" href="#panel<%=index%>"><span class="glyphicon glyphicon-plus"></span>MoreInfo</button>  --> 
+        </div>
+      </div>
 
-<% @camps.order(start_date: :asc).each do |camp| %>
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <div class="panel-title"><h1><%= camp.name %></h1></div>
-    </div>
-    <div class="panel-body">
-      <h4><%= camp.start_date.strftime("%A %b. %e")%> to <%= camp.end_date.strftime(" %A %b. %e")%></h4>
-      <p>
-        <%= camp.description %></br></br>
-        <strong>Grades:</strong> 
-        <% if camp.grade_low == -1 %>
-          JK
-        <% elsif camp.grade_low == 0 %>
-          SK
-        <% else %>
-          <%= camp.grade_low %>
-        <% end %>
-         to <%= camp.grade_high%></br>
-        <strong>Times:</strong> <%= camp.start_time.strftime("%l:%M %p") %> to <%= camp.end_time.strftime("%l:%M %p")%></br>
+      <div id="panel<%=index%>" >  <!--class="panel-collapse collapse">-->
+        <div class="panel-body">
+          <h4><%= camp.start_date.strftime("%A %b. %e")%> to <%= camp.end_date.strftime(" %A %b. %e")%></h4>
+          <p>
+            <%= camp.description %></br></br>
+            <strong>Grades:</strong> 
+            <% if camp.grade_low == -1 %>
+              JK
+            <% elsif camp.grade_low == 0 %>
+              SK
+            <% else %>
+              <%= camp.grade_low %>
+            <% end %>
+             to <%= camp.grade_high%></br>
+            <strong>Times:</strong> <%= camp.start_time.strftime("%l:%M %p") %> to <%= camp.end_time.strftime("%l:%M %p")%></br>
 
-        <strong>Cost:</strong> 
-        <% if camp.cost == 0 %>
-          Offering
-        <% else %>
-          <%= number_to_currency(camp.cost) %>
-        <% end %></br>
-        <strong>Director:</strong> <%= camp.director %></br>
-        <strong>Location:</strong> <%= camp.location %>, <%= camp.address %></br>
-      </p> 
-      
+            <strong>Cost:</strong> 
+            <% if camp.cost == 0 %>
+              Offering
+            <% else %>
+              <%= number_to_currency(camp.cost) %>
+            <% end %></br>
+            <strong>Director:</strong> <%= camp.director %></br>
+            <strong>Location:</strong> <%= camp.location %>, <%= camp.address %></br>
+          </p> 
+          
 
+        </div>
+        <div class="panel-footer">
+              <%= link_to 'SeeMap', camp %>
+            <%if camp.user == current_user or current_user.try(:admin?)%>
+              <%= link_to 'Edit', edit_camp_path(camp) %>
+              <%= link_to 'Destroy', camp, method: :delete, data: { confirm: 'Are you sure?' } %>
+            <%end%>
+        </div>
+      </div>
     </div>
-    <div class="panel-footer">
-          <%= link_to 'SeeMap', camp %>
-        <%if camp.user == current_user or current_user.try(:admin?)%>
-          <%= link_to 'Edit', edit_camp_path(camp) %>
-          <%= link_to 'Destroy', camp, method: :delete, data: { confirm: 'Are you sure?' } %>
-        <%end%>
-    </div>
-  </div>
-<% end %>
+  <% end %>
+</div>
 
 <% if user_signed_in? %>
   <%= link_to 'New Camp', new_camp_path, class: "btn btn-primary" %>

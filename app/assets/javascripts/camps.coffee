@@ -6,3 +6,4 @@ $ ->
 	$('.is_day').on 'change', ->
 	  $('#day_times').toggle $(this).hasClass('is_day_true')
 	  return
+
