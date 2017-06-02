@@ -11,13 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150921210415) do
+ActiveRecord::Schema.define(version: 20160331180819) do
 
   create_table "camps", force: :cascade do |t|
     t.string   "name"
     t.string   "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
     t.integer  "user_id"
     t.date     "start_date"
     t.date     "end_date"
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 20150921210415) do
     t.float    "latitude"
     t.float    "longitude"
     t.string   "address"
+    t.string   "pic_location"
   end
 
   add_index "camps", ["cost"], name: "index_camps_on_cost"

@@ -2,3 +2,16 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+
+.camp-pic-column{
+	width:33%;
+	float:left; /*Allow columns to appear inline when room is available*/
+	min-width: 225px;/*Columns will stack when column gets too thin to fit contents*/
+}
+.camp-info-column{
+	width:66%;
+	float:left; /*Allow columns to appear inline when room is available*/
+	min-width: 225px;/*Columns will stack when column gets too thin to fit contents*/
+}
+
+
