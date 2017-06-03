@@ -1,4 +1,4 @@
-handler = Gmaps.build('Google');
+handler = Gmaps.build("Google");
 handler.buildMap({ provider: {disableDefaultUI: true, 
   scaleControl: true,
   zoom: 16,
@@ -7,11 +7,11 @@ handler.buildMap({ provider: {disableDefaultUI: true,
   minZoom: 10,
   maxZoom: 18,
   zoomControl: true
-  }, internal: {id: 'map'}}, function (){
+  }, internal: {id: "map"}}, function (){
     marker = handler.addMarker([
     {
-    "lat": <%=@camp.latitude%>,
-    "lng": <%=@camp.longitude%>
+    "lat": "<%=@camp.latitude%>",
+    "lng": "<%=@camp.longitude%>"
     }
   ]);
   handler.map.centerOn(marker);
