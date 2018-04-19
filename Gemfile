@@ -17,6 +17,7 @@ gem 'aws-sdk', '< 2.0'
 gem 'masonry-rails', '~>0.2.0'
 gem 'gmaps4rails', '~> 2.0'
 gem 'geocoder'
+gem 'instagram'
 
 
 group :development, :test do

@@ -2,76 +2,75 @@
 <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.0/css/bootstrap-toggle.min.css" rel="stylesheet">
 <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.0/js/bootstrap-toggle.min.js"></script>
 
-<div class="panel panel-default center">
-  <div class="panel-body">
-    <h1>Welcome to the Camps Page!</h1>
-    <p><span class="glyphicon glyphicon-chevron-down"></span> | View all of our <%= Time.now.year %> camp offerings below. All grades refer to the fall of <%= Time.now.year %> | <span class="glyphicon glyphicon-chevron-down"></span></p>
-    <p><strong>Please try and register by June 15th for all camps by mailing the registration form and a $50.00 non-refundable deposit required to reserve a place at each camp.</strong></p>
-    <p>Printable camp information can be found here: <a target="_blank"  href="http://www.brktel.on.ca/~hope3219/HAM%20Camp%20Form%202017%20%20Information.pdf
-  ">HAM Information Form</a></p>
-    <p>Registration forms can be found here: <a target="_blank" href="http://www.brktel.on.ca/~hope3219/HAM%20Camp%20Form%202017%20Registration.pdf
-  ">HAM Registration Form</a></p>
-  </div>
+<div class = "container">
+	<div class="panel panel-default center">
+		<div class="panel-body">
+			<h1>Welcome to the Camps Page!</h1>
+			<p><span class="glyphicon glyphicon-chevron-down"></span> | View all of our <%= Time.now.year %> camp offerings below. All grades refer to the fall of <%= Time.now.year %> | <span class="glyphicon glyphicon-chevron-down"></span></p>
+			<p><strong>Please try and register by June 15th for all camps by mailing the registration form and a $50.00 non-refundable deposit required to reserve a place at each camp.</strong></p>
+			<p>Printable camp information can be found here: <%= link_to 'HAM Camp Information', "HAM_Camp_Form_2018_Information.pdf" %></p>
+			<p>Registration forms can be found here: <%=link_to 'HAM Camp Registration Form', "HAM_Camp_Form_Registration.pdf" %></p>
+			<p>Oil Springs Day Camp Registration Form: <%=link_to 'Oil Springs Day Camp', "Oil_Springs_Registration_Form.pdf" %>
+		</div>
+	</div>
+	<div class="panel-group">
+		<% @camps.order(start_date: :asc).each_with_index do |camp, index| %>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<div class="panel-title">
+						<h3><%= camp.name %></h3>
+						<!-- Buttons, couldn't get to work yet
+						<button type="button" id="more<%=index%>" data-toggle="collapse" href="#panel<%=index%>"><span class="glyphicon glyphicon-plus"></span>MoreInfo</button>  --> 
+					</div>
+				</div>
+
+				<div id="panel<%=index%>" >  <!--class="panel-collapse collapse">-->
+					<div class="panel-body">
+						<div class="camp-pic-column center">
+							<%= image_tag(camp.pic_location,:alt =>"Photo Missing",:width =>"225px")%>
+						</div>
+						<div class="camp-info-column">
+							<h4><%= camp.start_date.strftime("%A %b. %e")%> to <%= camp.end_date.strftime(" %A %b. %e")%></h4>
+							<p>
+							<%= camp.description %></br></br>
+							<strong>Grades:</strong> 
+							<% if camp.grade_low == -1 %>
+							JK
+							<% elsif camp.grade_low == 0 %>
+							SK
+							<% else %>
+							<%= camp.grade_low %>
+							<% end %>
+							to <%= camp.grade_high%></br>
+							<strong>Times:</strong> <%= camp.start_time.strftime("%l:%M %p") %> to <%= camp.end_time.strftime("%l:%M %p")%></br>
+
+							<strong>Cost:</strong> 
+							<% if camp.cost == 0 %>
+							Offering
+							<% else %>
+							<%= number_to_currency(camp.cost) %>
+							<% end %></br>
+							<strong>Director:</strong> <%= camp.director %></br>
+							<strong>Location:</strong> <%= camp.location %>, <%= camp.address %></br>
+							<%= link_to 'SeeMap', camp%>
+							</p>
+						</div>
+					</div>
+					<%if camp.user == current_user or current_user.try(:admin?)%>
+						<div class="panel-footer">
+							<%= link_to 'Edit', edit_camp_path(camp) %>
+							<%= link_to 'Destroy', camp, method: :delete, data: { confirm: 'Are you sure?' } %>
+						</div>
+					<%end%>
+				</div>
+			</div>
+		<% end %>
+	</div>
+
+	<% if user_signed_in? %>
+		<%= link_to 'New Camp', new_camp_path, class: "btn btn-primary" %>
+	<%end%>
 </div>
-<div class="panel-group">
-  <% @camps.order(start_date: :asc).each_with_index do |camp, index| %>
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <div class="panel-title">
-          <h3><%= camp.name %></h3>
-           <!-- Buttons, couldn't get to work yet
-          <button type="button" id="more<%=index%>" data-toggle="collapse" href="#panel<%=index%>"><span class="glyphicon glyphicon-plus"></span>MoreInfo</button>  --> 
-        </div>
-      </div>
-
-      <div id="panel<%=index%>" >  <!--class="panel-collapse collapse">-->
-        <div class="panel-body">
-          <div class="camp-pic-column center">
-            <%= image_tag(camp.pic_location,:alt =>"Photo Missing",:width =>"225px")%>
-          </div>
-          <div class="camp-info-column">
-            <h4><%= camp.start_date.strftime("%A %b. %e")%> to <%= camp.end_date.strftime(" %A %b. %e")%></h4>
-            <p>
-              <%= camp.description %></br></br>
-              <strong>Grades:</strong> 
-              <% if camp.grade_low == -1 %>
-                JK
-              <% elsif camp.grade_low == 0 %>
-                SK
-              <% else %>
-                <%= camp.grade_low %>
-              <% end %>
-               to <%= camp.grade_high%></br>
-              <strong>Times:</strong> <%= camp.start_time.strftime("%l:%M %p") %> to <%= camp.end_time.strftime("%l:%M %p")%></br>
-
-              <strong>Cost:</strong> 
-              <% if camp.cost == 0 %>
-                Offering
-              <% else %>
-                <%= number_to_currency(camp.cost) %>
-              <% end %></br>
-              <strong>Director:</strong> <%= camp.director %></br>
-              <strong>Location:</strong> <%= camp.location %>, <%= camp.address %></br>
-              <%= link_to 'SeeMap', camp%>
-            </p>
-          </div>
-        
-        </div>
-        <%if camp.user == current_user or current_user.try(:admin?)%>
-          <div class="panel-footer">
-                <%= link_to 'Edit', edit_camp_path(camp) %>
-                <%= link_to 'Destroy', camp, method: :delete, data: { confirm: 'Are you sure?' } %>
-          </div>
-        <%end%>
-      </div>
-    </div>
-  <% end %>
-</div>
-
-<% if user_signed_in? %>
-  <%= link_to 'New Camp', new_camp_path, class: "btn btn-primary" %>
-<%end%>
-
 
 
  
